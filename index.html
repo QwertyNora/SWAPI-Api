@@ -9,13 +9,19 @@
     <link rel="stylesheet" href="STYLES/style.css">
 </head>
 <body>
+    <video playsinline autoplay muted loop id="bgvid">
+        <source src="IMG/death-star-space-moewalls-com.mp4" type="video/mp4">
+      </video>
     <main>
+        <h1>Secret Planet</h1>
         <div class="wrapper">
             <span class="planet__span">
                 <img class="planet__img" src="IMG/planet.png" alt="Bild på planeten Rodia">
             </span>
-            <button onclick="getPlanetData()">Get Planet data</button>
+            <button onclick="getPlanetData()">Reveal planet</button>
+            <div id="planet-info"></div> 
         </div>
+        <!-- <div id="planet-info"></div>  -->
     </main>
 </body>
 </html>

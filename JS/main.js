@@ -1,74 +1,48 @@
-// Rodia = 23
-const PLANET_URL = "https://swapi.dev/api/planets/23/";
-const planetInfo = {};
+// const renderPlanetInfo = (item) => {
+//     const planetInfoDiv = document.getElementById("planet-info");
+//     planetInfoDiv.innerHTML = `
+//         <h2 class="header">${item?.name}</h2>
+//         <p class="paragraph">Climate: ${item?.climate}</p>
+//         <p class="paragraph">Terrain: ${item?.terrain}</p>
+//         <p class="paragraph">Population: ${item?.population}</p>
+//     `;
+// }
 
-const addToArray = (dataToAdd) => {
-    planetInfo.push(planetInfo);
-};
+// const getPlanetData = async () => {
+//     try {
+//         const response = await fetch(PLANET_URL);
+//         const data = await response.json();
+//         console.log(data); 
+//         renderPlanetInfo(data);
+//     } catch (error) {
+//         console.log("ERROR: " + error);
+//     }
+// };
+
+
+
+const PLANET_URL = "https://swapi.dev/api/planets/23/";
+
 
 const getPlanetData = async () => {
     try {
-        let results = await fetch(PLANET_URL);
-        const data = await results.json();
-        console.log(data);
+        const planetInfoDiv = document.getElementById("planet-info"); 
+        planetInfoDiv.innerHTML = '<p>Loading...</p>'; // Visar loading meddelande
 
-        let name = data.name;
-        let climate = data.climate;
-        let terrain = data.terrain;
-        let population = data.population;
+        const response = await fetch(PLANET_URL);
+        const data = await response.json();
+        console.log(data); // Loggar hämtad data till consol
 
-        data.forEach((planetInfo) => {
-            addToArray(planetInfo);
-        });
-
-        // planetInfo.push(name, climate, terrain, population);
-    }
-    catch(error) {
+        // Byter ut loading-message till hämtad data:
+        planetInfoDiv.innerHTML = `
+            <h2 class="header">${data?.name}</h2>
+            <p class="paragraph">Climate: ${data?.climate}</p>
+            <p class="paragraph">Terrain: ${data?.terrain}</p>
+            <p class="paragraph">Population: ${data?.population}</p>
+        `;
+    } catch (error) {
         console.log("ERROR: " + error);
+        const planetInfoDiv = document.getElementById("planet-info");
+        planetInfoDiv.innerHTML = '<p>An error occurred while fetching data.</p>';
     }
 };
-
-console.log(planetInfo);
-
-const getCard = (item) => {
-    const imgEl = document.createElement("img");
-    const articleEl = document.createElement("article");
-    const headingEl = document.createElement("h2");
-    const pEl = document.createElement("p");
-
-    articleEl.dataset.isopen = false;
-
-    articleEl.addEventListener("click", (e) => {
-        if(articleEl.dataset.isopen){
-            articleEl.appendChild(imgEl);
-            articleEl.appendChild(headingEl);
-            articleEl.appendChild(pEl);
-        } else {
-            articleEl.remove(imgEl);
-            articleEl.remove(headingEl);
-            articleEl.remove(pEl);
-        }
-    });
-
-};
-
-const renderPlanetInfo = (item) => {
-    const articleEl = document.createElement("article");
-    articleEl.innerHTML = `
-        <h2 class="header">${item?.name}</h2>
-        <p>${item.name} ${item.climate} ${item.terrain} ${item.population}</p>
-    `;
-
-    document.body.appendChild(articleEl);
-}
-
-
-// const renderGithubRepos = (item) => {
-//     const articleEl = document.createElement("article");
-//     articleEl.innerHTML = `
-//         <h2 class="header">${item?.name}</h2>
-//         <a target='blank' href='${item?.html_url}'> ${item?.html_url}</a>
-//     `;
-
-//     document.body.appendChild(articleEl);
-// };
