@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +10,20 @@
 <body>
     <video playsinline autoplay muted loop id="bgvid">
         <source src="IMG/death-star-space-moewalls-com.mp4" type="video/mp4">
-      </video>
+    </video>
     <main>
         <h1>Secret Planet</h1>
         <div class="wrapper">
             <span class="planet__span">
                 <img class="planet__img" src="IMG/planet.png" alt="Bild på planeten Rodia">
             </span>
-            <button onclick="getPlanetData()">Reveal planet</button>
-            <div id="planet-info"></div> 
+            <button data-modal-target="#modal" onclick="getPlanetData()"><i></i>Reveal planet</button>
         </div>
-        <!-- <div id="planet-info"></div>  -->
+
+        <div class="modal" id="modal">
+            <div id="planet-info"></div>
+        </div>
+        <div id="overlay"></div>
     </main>
 </body>
 </html>

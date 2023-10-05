@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -5,8 +7,25 @@
 }
 
 @font-face {
+    font-family: "Dogica";
+    src:
+        url("/SWAPI-Api/FONTS/dogica.ttf") format("truetype"),
+        url("/SWAPI-Api/FONTS/dogica.otf") format("otf");
+}
+
+@font-face {
     font-family: "Star Font";
     src: url("/SWAPI-Api/FONTS/Starjout.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Star Font Hollow";
+    src: url("/SWAPI-Api/FONTS/Starjhol.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Star Font mono";
+    src: url("/SWAPI-Api/FONTS/Strjmono.ttf") format("truetype");
 }
 
 // body {
@@ -24,15 +43,15 @@ video {
     top: 0;
     left: 0;
     z-index: -1;
-  }
+}
 
 h1 {
     margin-top: 3rem;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
-    font-family: 'Star Font';
-    color: #ffffff82;
+    font-family: 'Star Font Hollow';
+    color: #908eb882;
     font-size: 5rem;
 }
 
@@ -42,27 +61,128 @@ h1 {
     justify-content: center;
     align-items: center;
 
-    .planet__span{
+    .planet__span {
 
-        .planet__img{
+        .planet__img {
             max-width: 30vw;
         }
     }
 
-    button{
-        padding: 0.8rem;
-        padding-left: 50px;
-        padding-right: 50px;
-        background-color: black;
-        color: #fff;
-        border-radius: 50px;
+    button {
+        font-family: 'Dogica';
+        color: #ecf0f1;
+        font-size: 12px;
+        text-transform: uppercase;
+        background-color: #e67e22;
+        border: 1px solid #f39c12;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0px 6px 0px #d35400;
+        transition: all .1s;
+        margin-top: 50px;
+
+        &:active {
+            box-shadow: 0px 2px 0px #d35400;
+            position: relative;
+            top: 2px;
+        }
     }
 }
 
-#planet-info {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    // border: 1px solid black;
+    border-radius: 10px;
+    z-index: 90;
+    // background-color: #839170;
+    width: 400px;
+    max-width: 80%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.293), rgba(255, 255, 255, 0.293));
 
-    align-items: center;
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Fallback styles for unsupported browsers */
+    background: rgba(255, 255, 255, 0.293);
+    /* Fallback background color */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* Fallback box shadow */
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+    &.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    #planet-info {
+        height: 180px;
+        // padding: 2rem;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+    }
+
+    .header {
+        color: rgb(202, 202, 202);
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 2.5rem;
+        font-family: 'Star Font mono';
+
+        .close-button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    }
+
+    .paragraph {
+        font-size: 9px;
+        font-family: 'Dogica';
+        color: rgb(199, 210, 197);
+        padding: 7px 15px;
+    }
+
+    .paragraphLoading {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        font-family: 'Dogica';
+        color: rgb(199, 210, 197);
+    }
+}
+
+#overlay {
+    position: fixed;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Adjust the opacity as needed */
+    pointer-events: none;
+    z-index: 5;
+    /* Increase z-index to ensure it's above other content */
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
 }
