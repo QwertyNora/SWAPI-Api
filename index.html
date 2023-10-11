@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starwars API</title>
+    <script defer src="JS/main.js"></script>
+    <link rel="stylesheet" href="STYLES/style.css">
+</head>
+
+<body>
+    <video playsinline autoplay muted loop id="bgvid">
+        <source src="IMG/death-star-space-moewalls-com.mp4" type="video/mp4">
+    </video>
+    <main>
+        <h1>Secret Planet</h1>
+        <div class="wrapper">
+            <span class="planet__span">
+                <img class="planet__img" src="IMG/planet.png" alt="Bild på planeten Rodia">
+            </span>
+            <button data-modal-target="#modal" onclick="getPlanetData()"><i></i>Reveal planet</button>
+        </div>
+
+        <div class="modal" id="modal">
+            <div id="planet-info"></div>
+        </div>
+        <div id="overlay"></div>
+    </main>
+</body>
+
+</html>
